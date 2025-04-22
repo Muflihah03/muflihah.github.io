@@ -1,0 +1,179 @@
+from IPython.display import HTML, display
+
+birthday_html = """
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday!</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background-color: #ffebee;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-image: url('https://i.pinimg.com/originals/8f/ba/cb/8fbacb5a5d9a0a28c5b9c9a9e8f9e9e9.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .card {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            margin: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        h1 {
+            color: #e91e63;
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .message {
+            font-size: 1.5em;
+            color: #333;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        
+        .photo {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #e91e63;
+            margin: 20px auto;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        audio {
+            margin-top: 20px;
+            width: 80%;
+            max-width: 300px;
+        }
+        
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #f00;
+            border-radius: 50%;
+            animation: fall 5s linear infinite;
+        }
+        
+        @keyframes fall {
+            to { 
+                transform: translateY(100vh); 
+            }
+        }
+        
+        .balloon {
+            position: absolute;
+            width: 40px;
+            height: 50px;
+            background-color: rgba(255, 0, 0, 0.7);
+            border-radius: 50%;
+            animation: float 8s ease-in infinite;
+        }
+        
+        .balloon:before {
+            content: "";
+            position: absolute;
+            width: 2px;
+            height: 50px;
+            background-color: #666;
+            bottom: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        @keyframes float {
+            0% { 
+                transform: translateY(0) rotate(0deg); 
+            }
+            50% { 
+                transform: translateY(-100px) rotate(5deg); 
+            }
+            100% { 
+                transform: translateY(-200px) rotate(0deg); 
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>Happy Birthday!</h1>
+        
+        <img src="https://images.unsplash.com/photo-1518895949257-7621c3c786d7?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Birthday Photo" class="photo">
+        
+        <div class="message">
+            Semoga hari ulang tahunmu penuh dengan kebahagiaan, keceriaan, dan banyak kejutan menyenangkan!
+            <br><br>
+            Semoga panjang umur, sehat selalu, dan sukses dalam segala hal!
+        </div>
+        
+        <audio controls autoplay loop>
+            <!-- Musik Selamat Ulang Tahun - Jamrud -->
+            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+            <!-- Backup link alternatif -->
+            <source src="https://archive.org/download/jamrud-selamat-ulang-tahun/Jamrud%20-%20Selamat%20Ulang%20Tahun.mp3" type="audio/mpeg">
+            Browser Anda tidak mendukung elemen audio.
+        </audio>
+    </div>
+
+    <script>
+        // Create confetti
+        function createConfetti() {
+            const colors = ['#e91e63', '#00bcd4', '#ffeb3b', '#4caf50', '#9c27b0'];
+            const container = document.body;
+            
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                confetti.style.animationDelay = Math.random() + 's';
+                container.appendChild(confetti);
+            }
+        }
+        
+        // Create balloons
+        function createBalloons() {
+            const container = document.body;
+            
+            for (let i = 0; i < 10; i++) {
+                const balloon = document.createElement('div');
+                balloon.className = 'balloon';
+                balloon.style.left = Math.random() * 100 + 'vw';
+                balloon.style.bottom = -100 + 'px';
+                balloon.style.backgroundColor = `rgba(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, 0.7)`;
+                balloon.style.animationDuration = (Math.random() * 10 + 5) + 's';
+                balloon.style.animationDelay = Math.random() * 5 + 's';
+                container.appendChild(balloon);
+            }
+        }
+        
+        window.onload = function() {
+            createConfetti();
+            createBalloons();
+        };
+    </script>
+</body>
+</html>
+"""
+
+display(HTML(birthday_html))
